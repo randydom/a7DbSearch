@@ -1,0 +1,21 @@
+﻿<Window x:Class="a7DbSearch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:a7DbSearch"
+        Title="MainWindow" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="508" Width="964">
+    <TabControl>
+        <TabItem Header="Database search">
+            <local:ValuesDBSearch DataContext="{Binding DBSearch}" ></local:ValuesDBSearch>
+        </TabItem>
+        <TabItem  Header="Files search">
+            <local:ValuesFileSearch DataContext="{Binding FileSearch}"></local:ValuesFileSearch>
+        </TabItem>
+
+        <TabItem Header="HierarchyExplorer" >
+            <local:HierarchyExplorer DataContext="{Binding HierarchyExplorer}" x:Name="ucMenuExplorer"></local:HierarchyExplorer>
+        </TabItem>
+        <TabItem Header="Replace">
+            <local:ValueReplace></local:ValueReplace>
+        </TabItem>
+    </TabControl>
+</Window>
