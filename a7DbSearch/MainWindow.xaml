@@ -11,9 +11,9 @@
             <local:ValuesFileSearch DataContext="{Binding FileSearch}"></local:ValuesFileSearch>
         </TabItem>
 
-        <TabItem Header="HierarchyExplorer" >
+        <!--<TabItem Header="HierarchyExplorer" >
             <local:HierarchyExplorer DataContext="{Binding HierarchyExplorer}" x:Name="ucMenuExplorer"></local:HierarchyExplorer>
-        </TabItem>
+        </TabItem>-->
         <TabItem Header="Replace">
             <local:ValueReplace></local:ValueReplace>
         </TabItem>

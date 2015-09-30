@@ -18,7 +18,7 @@
                     <CheckBox IsChecked="True" Margin="3" DockPanel.Dock="Top" x:Name="SelectAllTables" Checked="SelectAllTables_Checked" Unchecked="SelectAllTables_Unchecked">Select/Unselect all</CheckBox>
                     <DockPanel DockPanel.Dock="Top">
                         <Label DockPanel.Dock="Left">Filter:</Label>
-                        <TextBox x:Name="tbTableFilter" TextChanged="tbTableFilter_TextChanged">tbC</TextBox>
+                        <TextBox x:Name="tbTableFilter" TextChanged="tbTableFilter_TextChanged"></TextBox>
                     </DockPanel>
                     <Button x:Name="bShowTable" DockPanel.Dock="Top" Click="bShowTable_Click">Show Table</Button>
                     <ListBox x:Name="lbTables"  ItemsSource="{Binding DictTables.Values}">

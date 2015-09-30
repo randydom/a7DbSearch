@@ -42,6 +42,8 @@ namespace a7DbSearch
             {
                 DBSearch.ActualizedWork += new EventHandler<a7DbSearchEngine.DBSearchEventArgs>(dbSearch_AcutalizedWork);
                 DBSearch.FinishedSearch += new EventHandler<a7DbSearchEngine.DBSearchFinishedEventArgs>(dbSearch_Finished);
+                if (DBSearch != null)
+                    DBSearch.RefreshDictTables(this.tbTableFilter.Text);
             }
         }
 
