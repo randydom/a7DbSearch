@@ -3,68 +3,6 @@
   <DB>
     Data Source=localhost\a7; Initial Catalog=a7Config; Integrated Security=yes;Persist Security Info=false;
   </DB>
-  <HierarchyExplorer name="Menu">
-      <SQL>
-        with detail as
-        (
-        select
-        CASE WHEN CHARINDEX('%',menu.attCaption,11)>11 THEN  substring(cast(ISNULL(menu.attCaption,'') as nchar(40)),11,CHARINDEX('%',menu.attCaption,11)-11) ELSE '' END as wrdKey,
-        menu.linClassID, 'detail' as viewType,
-        menu.linFunctionID, menu.sysMenuID, menu.linParentID,menu.attCall, menu.attParams,
-        menu.linMenuTypeID, linEnabledID, linDisplayID, linMacroID, func.linUserDialogID, func.linMacroConditionName,
-        func.linMacroMenuCheckName, func.linMacroBeforeName, func.linMacroExecuteName, func.linMacroAfterName, func.attDescription as funcDesc, menu.attOrder, menu.attCaption
-        from
-        tbCMenu as menu left join tbCClassFunctionReg as func on func.linClassID = menu.linClassID and func.linFunctionID = menu.linFunctionID
-        where menu.linClassID in (%CLASSLIST%)
-
-        union
-
-        select
-        CASE WHEN CHARINDEX('%',menu.attCaption,11)>11 THEN  substring(cast(ISNULL(menu.attCaption,'') as nchar(40)),11,CHARINDEX('%',menu.attCaption,11)-11) ELSE '' END as wrdKey,
-        menu.linClassID, 'list' as viewType,
-        menu.linFunctionID, menu.sysMenuID, menu.linParentID,menu.attCall, menu.attParams,
-        menu.linMenuTypeID, linEnabledID, linDisplayID, linMacroID, func.linUserDialogID, func.linMacroConditionName,
-        func.linMacroMenuCheckName, func.linMacroBeforeName, func.linMacroExecuteName, func.linMacroAfterName, func.attDescription as funcDesc, menu.attOrder, menu.attCaption
-        from  --tbCWordbook as wrd,
-        tbCMenuList as menu left join tbCClassFunctionReg as func on func.linClassID = menu.linClassID and func.linFunctionID = menu.linFunctionID
-        where menu.linClassID in (%CLASSLIST%)
-        )
-
-        select tbCWordbook.attText, linClassID, viewType, linFunctionID, sysMenuID, linParentID, attCall, attParams, linMenuTypeID,
-        linEnabledID, linDisplayID, linMacroID, linUserDialogID, linMacroConditionName,
-        linMacroMenuCheckName, linMacroBeforeName, linMacroExecuteName, linMacroAfterName, funcDesc from detail left join tbCWordbook on detail.wrdKey = tbCWordbook.sysWordbookKey and linCC='en'
-        order by linClassID, viewType, attOrder
-
-      </SQL>
-      <hierarchy captionField="attText"  idFields="sysMenuID" parentIdFields="menu.linParentID" rootParent="NULL" fieldEqualToParent="viewType"></hierarchy>
-
-      <macroFieldProperties tableName="tbCMacroReg" nextMacroField="linNextMacroID" idField="sysMacroID"></macroFieldProperties>
-      <macroFields>
-        <macroField name="linMacroID"></macroField>
-        <macroField name="linMacroConditionName"></macroField>
-        <macroField name="linMacroMenuCheckName"></macroField>
-        <macroField name="linMacroBeforeName"></macroField>
-        <macroField name="linMacroExecuteName"></macroField>
-        <macroField name="linMacroAfterName"></macroField>
-      </macroFields>
-  </HierarchyExplorer>
-
-  <HierarchyExplorer name="Tree">
-    <SQL>
-      select sysBoxId+' ' as tmpCaption, * from tbCDTreeManager where 1=1 order by attOrder
-
-
-    </SQL>
-    <hierarchy captionField="tmpCaption"  idFields="sysBoxId" parentIdFields="linParentBoxId" rootParent="null" noLoops="true"></hierarchy>
-  </HierarchyExplorer>
-
-  <HierarchyExplorer name="Links">
-    <SQL>
-      select * from tbCClassLinkDef where 1=1
-
-
-    </SQL>
-    <hierarchy captionField="linParentClassId"  idFields="linParentClassId" parentIdFields="linChildClassId" rootParent="null" noLoops="true"></hierarchy>
-  </HierarchyExplorer>
+ 
   
 </exportConfiguration>
